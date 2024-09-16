@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -6,11 +6,22 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './counter.component.html'
 })
-export class CounterComponent {
+export class CounterComponent  implements OnInit{
 
   counter: number = 0;
 
-  setCounter() :void {
-    this.counter = this.counter +1 ;
+  ngOnInit(): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const storedCounter = sessionStorage.getItem('counter');
+      this.counter = storedCounter ? parseInt(storedCounter, 10) : 0;
+    }
+    console.log('creando componente');
+  }
+
+  setCounter(): void {
+    this.counter = this.counter + 1;
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.setItem('counter', this.counter.toString());
+    }
   }
 }
