@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CounterComponent } from './counter/counter.component';
@@ -10,7 +10,15 @@ import { CounterComponent } from './counter/counter.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  
+  ngOnInit(): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      this.counter = parseInt(sessionStorage.getItem('counter')!);
+    }
+    
+  }
+
   title: string = 'Hola Mundo desde componente';
   
   subTitle = 'Contador con estado de session soy el padre';
@@ -20,7 +28,13 @@ export class AppComponent {
   //users: string[] = [];
   //users?: string[];
 
+  counter: number = 0;
+
   setVisible() : void {
     this.visible = !this.visible;
+  }
+
+  setCounter(counter: number): void {
+    this.counter = counter;
   }
 }
