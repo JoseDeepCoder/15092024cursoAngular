@@ -13,9 +13,7 @@ import { CounterComponent } from './counter/counter.component';
 export class AppComponent implements OnInit{
   
   ngOnInit(): void {
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      this.counter = parseInt(sessionStorage.getItem('counter')!);
-    }
+    this.counter = parseInt(sessionStorage.getItem('counter')!);
     
   }
 
