@@ -13,6 +13,8 @@ import { CounterComponent } from './counter/counter.component';
 export class AppComponent {
   title: string = 'Hola Mundo desde componente';
   
+  subTitle = 'Contador con estado de session soy el padre';
+
   users: string[] = ['Juan', 'Jose'];
   visible: boolean = false;
   //users: string[] = [];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class CounterComponent  implements OnInit{
 
   counter: number = 0;
+
+  @Input() title!: string;
 
   ngOnInit(): void {
     if (typeof window !== 'undefined' && window.sessionStorage) {
